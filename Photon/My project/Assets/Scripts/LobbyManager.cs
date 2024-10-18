@@ -7,10 +7,11 @@ using UnityEngine.UI;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
-   
-    [SerializeField] Canvas lobbyCanvas;
-    
+    [SerializeField] Dropdown dropdown;
 
+    [SerializeField] Canvas lobbyCanvas;
+
+    
 
 
     private void Awake()
@@ -41,7 +42,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         // joinLobby : 특정 로비를 생성하여 진입하는 변수
-        PhotonNetwork.JoinLobby(new TypedLobby("Default" , LobbyType.Default));
+        PhotonNetwork.JoinLobby(new TypedLobby(dropdown.options[dropdown.value].text , LobbyType.Default));
 
     }
 
