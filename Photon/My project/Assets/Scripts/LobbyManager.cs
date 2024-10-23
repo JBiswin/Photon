@@ -11,12 +11,19 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     [SerializeField] Canvas lobbyCanvas;
 
-    
+    [SerializeField] GameObject nickNamePanel;
 
 
     private void Awake()
     {
-        if(PhotonNetwork.IsConnected)
+        PhotonNetwork.NickName = PlayerPrefs.GetString("NickName");
+
+        if (string.IsNullOrEmpty(PlayerPrefs.GetString("NickName")))
+        {
+            nickNamePanel.SetActive(true);
+        }
+
+        if (PhotonNetwork.IsConnected)
         {
             lobbyCanvas.gameObject.SetActive(false);
         }

@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 [RequireComponent(typeof(Rotation))]
-public class Head : MonoBehaviour
+public class Head : MonoBehaviourPunCallbacks
 {
     Rotation rotation;
     
@@ -16,6 +17,8 @@ public class Head : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (photonView.IsMine == false) return;
+
         rotation.RotateX();
     }
 

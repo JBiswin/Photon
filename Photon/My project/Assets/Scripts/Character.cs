@@ -8,6 +8,9 @@ using Photon.Realtime;
 public class Character : MonoBehaviourPun
 {
     [SerializeField] Camera remoteCamera;
+   
+
+
     Rigidbody rigidbody;
 
     public Move move;
@@ -31,7 +34,7 @@ public class Character : MonoBehaviourPun
    
     void Update()
     {
-        
+        if (photonView.IsMine == false) return;
 
         rotation.InputRotateY();
 
@@ -64,7 +67,7 @@ public class Character : MonoBehaviourPun
 
     private void FixedUpdate()
     {
-        
+        if (photonView.IsMine == false) return;
     }
 
     public void DisableCamera()
